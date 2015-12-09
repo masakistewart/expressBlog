@@ -1,0 +1,11 @@
+{
+  "name": "cairo",
+  "version": "1.0.0",
+  "description": "a short 3 page static website to practice middleware and ejs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
