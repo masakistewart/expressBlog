@@ -5,10 +5,22 @@
 </head>
 <body id="container">
 	<% include ../partial/header %>
-	<div class="container">
-		<div id="jumbo" class="jumbotron">
-			<h1 class="text-success text-center">Hello</h1>
-		</div>
+	<div class="container-fluid">
+		<% posts.forEach(function(post) { %>
+			<div id="jumbo" class="jumbotron">
+				<div class="row">
+					<div class="col-md-3">
+						<img class="img img-circle" src="<%= post.img %>"/>
+					</div>
+					<div class="col-md-1 text-primary">
+						<p class="textTitle"><%= post.title %>
+					</div>
+					<div class="col-md-8">
+						<p class="article"><%= post.article %></p>
+					</div>`
+				</div>
+			</div>
+		<% }) %>
 	</div>
 	<% include ../partial/footer %>
 </body>
