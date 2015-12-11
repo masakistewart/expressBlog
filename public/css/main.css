@@ -7,6 +7,14 @@ body {
 	background-size: cover;
 }
 
+textarea {
+	min-height: 130px;
+}
+
+#postJumbo {
+	margin-top: 5%;
+}
+
 .row {
 	margin-bottom: 40px;
 	width: 100%;
@@ -49,4 +57,8 @@ body {
 
 #jumbo:last-child {
 	margin-bottom: 80px;
+}
+
+#jumbo:first-child {
+	margin-top: 80px;
 }

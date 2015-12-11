@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<% include ../partial/head %>
+</head>
+<body>
+	<% include ../partial/header %>
+	<div id="filler" class="container">
+		<div class="jumbotron">
+			<center>
+				<ol>
+				<% posts.forEach(function(post) { %>
+					<li><a href="/delete/<%= post.title %>"><%= post.title %></a></li>
+				<% }) %>
+				</ol>
+			</center>
+		</div>
+	</div>
+	<% include ../partial/footer %>
+</body>
+</html>

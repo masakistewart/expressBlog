@@ -1,18 +1,13 @@
 var fs = require('fs');
-var redis = require('redis');
-var client = redis.createClient();
-
 
 var funky = {
-	'getData': function(title, article, img) {
+	'getData': function(title, article, img, keywords) {
 		var jsonFile = readAndReturn('articles.json');
-		console.log(jsonFile);
 		if(jsonFile.posts.length > 0) {
-			jsonFile.posts.push(new MakeData(title, article, img));
+			jsonFile.posts.push(new MakeData(title, article, img, keywords));
 			writeData(jsonFile);
 		} else {
-			jsonFile.posts.push(new MakeData(title, article, img));
-			console.log(jsonFile);
+			jsonFile.posts.push(new MakeData(title, article, img, keywords));
 			writeData(jsonFile);
 		}
 	},
@@ -20,8 +15,35 @@ var funky = {
 			var jsonFile = readAndReturn('articles.json');
 			return jsonFile.posts;
 	},
-	'deletePost': function(id) {
+	'deletePost': function(title) {
 		var jsonFile = readAndReturn('articles.json');
+		var posts = jsonFile.posts;
+		for (var i = 0; posts.length > i; i++) {
+			if(posts[i].title === title){
+				posts.splice(i, 1);
+				jsonFile.posts = posts;
+			}
+		};
+		writeData(jsonFile);
+	},
+	'parseKeyWords': function(str) {
+		var arr = str.split(' ');
+		return arr;
+	},
+	'findKeyWords': function(key){
+		var jsonFile = readAndReturn('articles.json');
+		var filterArr = [];
+		for (var i = 0; i < jsonFile.posts.length; i++) {
+			if(jsonFile.posts[i].keywords.length > 0) {
+			 	for (var j = 0; j < jsonFile.posts[i].keywords.length; j++) {
+			 		if(jsonFile.posts[i].keywords[j] === key){
+			 			filterArr.push(jsonFile.posts[i])
+			 		}
+			 	}
+			}
+		};
+		console.log(filterArr);
+		return filterArr
 	}
 };
 
@@ -43,10 +65,11 @@ function newDate() {
 	return "" + new Date().getDate() + "-" +  new Date().getMonth() + '-' + new Date().getFullYear();
 }
 
-function MakeData(title, article, img) {
+function MakeData(title, article, img, keywordsArr) {
 		this.title = title;
 		this.article =  article;
 		this.img = img;
+		this.keywords = keywordsArr;
 		this.date = newDate();
 };
 module.exports = funky;

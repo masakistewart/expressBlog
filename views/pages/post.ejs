@@ -6,7 +6,7 @@
 <body id="container">
 	<% include ../partial/header %>
 	<div class="container">
-		<div id="jumbo" class="jumbotron">
+		<div id="postJumbo" class="jumbotron">
 			<form action="/articles" method="POST">
 				<div class="form-group">
 					<label for="title">Title</label>
@@ -15,6 +15,10 @@
 				<div class="form-group">
 					<label for="article">Article</label>
 					<textarea class="form-control" name="article"></textarea>
+				</div>
+				<div class="form-group">
+					<label for="keywords">Keywords</label>
+					<input type="text" class="form-control" name="keywords">
 				</div>
 				<div class="form-group">
 					<label for="img">IMG URL</label>
