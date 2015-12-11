@@ -5,17 +5,15 @@
 </head>
 <body id="container">
 	<% include ../partial/header %>
-	<div class="container-fluid">
+	<div class="container">
 		<% posts.forEach(function(post) { %>
 			<div id="jumbo" class="jumbotron">
 				<div class="row">
 					<div class="col-md-3">
-						<img class="img img-circle" src="<%= post.img %>"/>
-					</div>
-					<div class="col-md-1 text-primary">
-						<p class="textTitle"><%= post.title %>
+						<center><img class="img img-circle" src="<%= post.img %>"/></center>
 					</div>
 					<div class="col-md-8">
+						<legend class="title text-center"><%= post.title %></legend>
 						<p class="article"><%= post.article %></p>
 					</div>`
 				</div>

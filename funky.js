@@ -1,4 +1,7 @@
 var fs = require('fs');
+var redis = require('redis');
+var client = redis.createClient();
+
 
 var funky = {
 	'getData': function(title, article, img) {
@@ -17,8 +20,8 @@ var funky = {
 			var jsonFile = readAndReturn('articles.json');
 			return jsonFile.posts;
 	},
-	'deletePost': function() {
-
+	'deletePost': function(id) {
+		var jsonFile = readAndReturn('articles.json');
 	}
 };
 
@@ -36,9 +39,14 @@ function writeData(obj) {
 	});
 }
 
+function newDate() {
+	return "" + new Date().getDate() + "-" +  new Date().getMonth() + '-' + new Date().getFullYear();
+}
+
 function MakeData(title, article, img) {
 		this.title = title;
 		this.article =  article;
 		this.img = img;
+		this.date = newDate();
 };
 module.exports = funky;

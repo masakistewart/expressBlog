@@ -2,7 +2,7 @@ var express = require('express');
 var funky = require('./funky');
 var router = express.Router();
 
-router.get('/',function(req,res) { 
+router.get('/',function(req,res) {
 	var arts = funky.postData();
 	console.log(arts)
 	res.render('pages/index', {posts: arts})
@@ -19,7 +19,7 @@ router.post('/articles', function(req, res) {
 
 router.get('/about',function(req,res) { 
   res.render('pages/about');
- });
+});
 
 router.get('/contact',function(req,res) { 
   res.render('pages/contact');
@@ -27,6 +27,6 @@ router.get('/contact',function(req,res) {
 
 router.get('/post',function(req,res) { 
   res.render('pages/post');
- });
+});
 
 module.exports = router;
