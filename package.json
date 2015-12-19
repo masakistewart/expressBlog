@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "a short 3 page static website to practice middleware and ejs",
   "main": "server.js",
+  "repository": "https://github.com/masakistewart/expressBlog.git",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,6 +13,9 @@
     "body-parser": "^1.14.1",
     "ejs": "^2.3.4",
     "express": "^4.13.3",
+    "knex": "^0.9.0",
+    "locus": "^1.2.0",
+    "pg": "^4.4.3",
     "redis": "^2.4.2",
     "static": "^2.0.0"
   }

@@ -1,50 +1,46 @@
 var fs = require('fs');
-
+var knex = require('./db/knex');
 var funky = {
-	'getData': function(title, article, img, keywords) {
-		var jsonFile = readAndReturn('articles.json');
-		if(jsonFile.posts.length > 0) {
-			jsonFile.posts.push(new MakeData(title, article, img, keywords));
-			writeData(jsonFile);
-		} else {
-			jsonFile.posts.push(new MakeData(title, article, img, keywords));
-			writeData(jsonFile);
-		}
+	'getData': function() {
+		knex('posts').then(function(data) {
+			console.log(data);
+			return data;
+		})
 	},
 	'postData': function() {
-			var jsonFile = readAndReturn('articles.json');
-			return jsonFile.posts;
-	},
-	'deletePost': function(title) {
 		var jsonFile = readAndReturn('articles.json');
-		var posts = jsonFile.posts;
-		for (var i = 0; posts.length > i; i++) {
-			if(posts[i].title === title){
-				posts.splice(i, 1);
-				jsonFile.posts = posts;
-			}
-		};
-		writeData(jsonFile);
+		return jsonFile.posts;
 	},
-	'parseKeyWords': function(str) {
-		var arr = str.split(' ');
-		return arr;
-	},
-	'findKeyWords': function(key){
-		var jsonFile = readAndReturn('articles.json');
-		var filterArr = [];
-		for (var i = 0; i < jsonFile.posts.length; i++) {
-			if(jsonFile.posts[i].keywords.length > 0) {
-			 	for (var j = 0; j < jsonFile.posts[i].keywords.length; j++) {
-			 		if(jsonFile.posts[i].keywords[j] === key){
-			 			filterArr.push(jsonFile.posts[i])
-			 		}
-			 	}
-			}
-		};
-		console.log(filterArr);
-		return filterArr
-	}
+	// 'deletePost': function(title) {
+	// 	var jsonFile = readAndReturn('articles.json');
+	// 	var posts = jsonFile.posts;
+	// 	for (var i = 0; posts.length > i; i++) {
+	// 		if(posts[i].title === title){
+	// 			posts.splice(i, 1);
+	// 			jsonFile.posts = posts;
+	// 		}
+	// 	};
+	// 	writeData(jsonFile);
+	// },
+	// 'parseKeyWords': function(str) {
+	// 	var arr = str.split(' ');
+	// 	return arr;
+	// },
+	// 'findKeyWords': function(key){
+	// 	var jsonFile = readAndReturn('articles.json');
+	// 	var filterArr = [];
+	// 	for (var i = 0; i < jsonFile.posts.length; i++) {
+	// 		if(jsonFile.posts[i].keywords.length > 0) {
+	// 		 	for (var j = 0; j < jsonFile.posts[i].keywords.length; j++) {
+	// 		 		if(jsonFile.posts[i].keywords[j] === key){
+	// 		 			filterArr.push(jsonFile.posts[i])
+	// 		 		}
+	// 		 	}
+	// 		}
+	// 	};
+	// 	console.log(filterArr);
+	// 	return filterArr
+	// }
 };
 
 function readAndReturn(file) {

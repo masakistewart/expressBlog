@@ -1,10 +1,11 @@
 var express = require('express');
-var funky = require('./funky');
+var funky = require('../funky');
 var router = express.Router();
 
+
 router.get('/',function(req,res) {
-	var arts = funky.postData();
-	res.render('pages/posts', {posts: arts})
+	var arts = funky.getData();
+	//res.render('pages/posts', {posts: arts})
  });
 
 router.get('/index',function(req,res) { 
